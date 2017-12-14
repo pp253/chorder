@@ -1,0 +1,180 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+body {
+  background-color: #999; }
+
+.piano {
+  position: relative; }
+  .piano .piano-key-c {
+    position: absolute;
+    top: 60.60606vw;
+    left: 0;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-c:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 0vw;
+    width: 7.87879vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-c:active,
+  .piano .piano-key-c:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-d {
+    position: absolute;
+    top: 60.60606vw;
+    left: 14.54545vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-d:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 2.42424vw;
+    width: 7.87879vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-d:active,
+  .piano .piano-key-d:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-e {
+    position: absolute;
+    top: 60.60606vw;
+    left: 29.09091vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-e:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 4.84848vw;
+    width: 7.87879vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-e:active,
+  .piano .piano-key-e:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-c-sharp {
+    position: absolute;
+    top: 0;
+    left: 9.69697vw;
+    width: 5.45455vw;
+    height: 58.78788vw;
+    background-color: #333; }
+  .piano .piano-key-c-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-d-sharp {
+    position: absolute;
+    top: 0;
+    left: 26.66667vw;
+    width: 5.45455vw;
+    height: 58.78788vw;
+    background-color: #333; }
+  .piano .piano-key-d-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-f {
+    position: absolute;
+    top: 60.60606vw;
+    left: 43.63636vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-f:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 0vw;
+    width: 7.27273vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-f:active,
+  .piano .piano-key-f:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-g {
+    position: absolute;
+    top: 60.60606vw;
+    left: 58.18182vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-g:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 1.81818vw;
+    width: 7.27273vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-g:active,
+  .piano .piano-key-g:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-a {
+    position: absolute;
+    top: 60.60606vw;
+    left: 72.72727vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-a:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 3.63636vw;
+    width: 7.27273vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-a:active,
+  .piano .piano-key-a:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-b {
+    position: absolute;
+    top: 60.60606vw;
+    left: 87.27273vw;
+    width: 12.72727vw;
+    height: 28.48485vw;
+    background-color: #fff; }
+  .piano .piano-key-b:before {
+    content: "";
+    position: absolute;
+    bottom: 28.48485vw;
+    left: 5.45455vw;
+    width: 7.27273vw;
+    height: 60.60606vw;
+    background-color: #fff; }
+  .piano .piano-key-b:active,
+  .piano .piano-key-b:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-f-sharp {
+    position: absolute;
+    top: 0;
+    left: 52.72727vw;
+    width: 5.45455vw;
+    height: 58.78788vw;
+    background-color: #333; }
+  .piano .piano-key-f-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-g-sharp {
+    position: absolute;
+    top: 0;
+    left: 69.09091vw;
+    width: 5.45455vw;
+    height: 58.78788vw;
+    background-color: #333; }
+  .piano .piano-key-g-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-a-sharp {
+    position: absolute;
+    top: 0;
+    left: 85.45455vw;
+    width: 5.45455vw;
+    height: 58.78788vw;
+    background-color: #333; }
+  .piano .piano-key-a-sharp:active {
+    background-color: #555; }

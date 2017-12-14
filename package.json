@@ -1,0 +1,21 @@
+{
+  "name": "chorder",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "node-sass ./style.scss ./style.css"
+  },
+  "author": "pp253",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "node-sass": "^4.7.2"
+  },
+  "devDependencies": {},
+  "standard": {
+    "ignore": [
+      "/dist/*"
+    ],
+    "parser": "babel-eslint",
+    "globals": []
+  }
+}
