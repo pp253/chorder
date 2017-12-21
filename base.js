@@ -53,7 +53,7 @@ function toLegalNumber (num) {
 
 function toNote (tone, degree) {
   const musicIntervalRegExp = /([=+-]*)(\d+)/
-  let [_, quality, num] = musicIntervalRegExp.exec(degree)
+  let [, quality, num] = musicIntervalRegExp.exec(degree)
   num = parseInt(num)
   let half = 0
   let qualityToHalf = musicIntervalQuality[quality]
@@ -73,7 +73,7 @@ function equalNote (note, tone, degree) {
 
 // Try on ML
 const initialWeightMatrix = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]
 const learningRate = 0.05
 
