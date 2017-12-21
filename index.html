@@ -8,22 +8,70 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <div class="chords">
+    <div class="chord">
+      <div class="chord-name">C</div>
+      <div class="chord-nodes">
+        <div class="abctext">X: 1
+          L:1/1
+          [CEG]
+        </div>
+      </div>
+    </div>
+    <div class="chord">
+      <div class="chord-name">Cm7</div>
+      <div class="chord-nodes">
+        <div class="abctext">X: 1
+            L:1/1
+            [C^DE^G]
+          </div>
+      </div>
+    </div>
+    <div class="chord">
+      <div class="chord-name">C</div>
+      <div class="chord-nodes">
+        <div class="abctext">X: 1
+            L:1/1
+            [C^DE^G]
+          </div>
+      </div>
+    </div>
+    <div class="chord">
+      <div class="chord-name">C</div>
+      <div class="chord-nodes">
+        <div class="abctext">X: 1
+            L:1/1
+            [C^DE^G]
+          </div>
+      </div>
+    </div>
+  </div>
   <div class="piano-wrapper">
     <div class="piano">
-      <div class="piano-key piano-key-c"></div>
-      <div class="piano-key piano-key-c-sharp"></div>
-      <div class="piano-key piano-key-d"></div>
-      <div class="piano-key piano-key-d-sharp"></div>
-      <div class="piano-key piano-key-e"></div>
-      <div class="piano-key piano-key-f"></div>
-      <div class="piano-key piano-key-f-sharp"></div>
-      <div class="piano-key piano-key-g"></div>
-      <div class="piano-key piano-key-g-sharp"></div>
-      <div class="piano-key piano-key-a"></div>
-      <div class="piano-key piano-key-a-sharp"></div>
-      <div class="piano-key piano-key-b"></div>
+      <div id="piano-key-c" class="piano-key piano-key-c"></div>
+      <div id="piano-key-c-sharp" class="piano-key piano-key-c-sharp"></div>
+      <div id="piano-key-d" class="piano-key piano-key-d"></div>
+      <div id="piano-key-d-sharp" class="piano-key piano-key-d-sharp"></div>
+      <div id="piano-key-e" class="piano-key piano-key-e"></div>
+      <div id="piano-key-f" class="piano-key piano-key-f"></div>
+      <div id="piano-key-f-sharp" class="piano-key piano-key-f-sharp"></div>
+      <div id="piano-key-g" class="piano-key piano-key-g"></div>
+      <div id="piano-key-g-sharp" class="piano-key piano-key-g-sharp"></div>
+      <div id="piano-key-a" class="piano-key piano-key-a"></div>
+      <div id="piano-key-a-sharp" class="piano-key piano-key-a-sharp"></div>
+      <div id="piano-key-b" class="piano-key piano-key-b"></div>
     </div>
   </div>
   <script src="./base.js"></script>
+  <script src="https://abcjs.net/abcjs_plugin_3.2.0-min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    ABCJS.plugin.hide_abc = true
+    ABCJS.plugin.render_options.add_classes = true
+    ABCJS.plugin.render_options.staffwidth = 140
+    ABCJS.plugin.render_options.paddingtop = 0
+    ABCJS.plugin.render_options.paddingright = 0
+    ABCJS.plugin.render_options.paddingbottom = 0
+    ABCJS.plugin.render_options.paddingleft = 0
+  </script>
 </body>
 </html>

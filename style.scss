@@ -7,60 +7,82 @@ body {
   background-color: #999;
 }
 
-$piano-ratio: 100vw / (21px * 7 + 3px * 6);
-$piano-key-padding: 3px * $piano-ratio;
-
-$piano-black-key-width: 9px * $piano-ratio;
-$piano-black-key-height: 97px * $piano-ratio;
-$piano-black-key-color: #333;
-
-$piano-white-key-width: 21px * $piano-ratio;
-$piano-white-key-height: 147px * $piano-ratio;
-$piano-white-key-color: #fff;
-
-
-@mixin piano-white-key($key-name, $left, $t-left, $t-width) {
-  // lower part
-  #{".piano-key-" + $key-name} {
-    position: absolute;
-    top: $piano-black-key-height + $piano-key-padding;
-    left: $left;
-    width: $piano-white-key-width;
-    height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
-    background-color: $piano-white-key-color;
-  }
-  // upper part
-  #{".piano-key-" + $key-name}:before {
-    content: "";
-    position: absolute;
-    bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
-    left: $t-left;
-    width: $t-width;
-    height: $piano-black-key-height + $piano-key-padding;
-    background-color: $piano-white-key-color;
-  }
-  #{".piano-key-" + $key-name}:active,
-  #{".piano-key-" + $key-name}:active:before {
-    background-color: #ccc;
-  }
-}
-
-@mixin piano-black-key($key-name, $left) {
-  #{".piano-key-" + $key-name} {
-    position: absolute;
-    top: 0;
-    left: $left;
-    width: $piano-black-key-width;
-    height: $piano-black-key-height;
-    background-color: $piano-black-key-color;
-  }
-  #{".piano-key-" + $key-name}:active {
-    background-color: #555;
-  }
-}
-
 .piano {
+  user-select: none;
   position: relative;
+
+  width: 600px;
+  height: 200px;
+
+  $piano-ratio: 400px / (21px * 7 + 3px * 6);
+  $piano-key-padding: 3px * $piano-ratio;
+  $piano-background-color: #999;
+  
+  $piano-black-key-width: 9px * $piano-ratio;
+  $piano-black-key-height: 97px * $piano-ratio;
+  $piano-black-key-color: #333;
+  
+  $piano-white-key-width: 21px * $piano-ratio;
+  $piano-white-key-height: 147px * $piano-ratio;
+  $piano-white-key-color: #fff;
+  
+  
+  @mixin piano-white-key($key-name, $left, $t-left, $t-width) {
+    // lower part
+    #{".piano-key-" + $key-name} {
+      position: absolute;
+      top: 0;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    /*
+    // lower part
+    #{".piano-key-" + $key-name} {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    #{".piano-key-" + $key-name}:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+    #{".piano-key-" + $key-name}:active,
+    #{".piano-key-" + $key-name}:active:before {
+      background-color: #ccc;
+    }
+  }
+  
+  @mixin piano-black-key($key-name, $left) {
+    #{".piano-key-" + $key-name} {
+      position: absolute;
+      top: 0;
+      left: $left;
+      width: $piano-black-key-width;
+      height: $piano-black-key-height;
+      background-color: $piano-black-key-color;
+      border-style: solid;
+      border-color: $piano-background-color;
+      border-width: 0 $piano-key-padding $piano-key-padding $piano-key-padding;
+      z-index: 1000;
+    }
+    #{".piano-key-" + $key-name}:active {
+      background-color: #555;
+    }
+  }
 
   $piano-key-name-left: 'c', 'd', 'e';
   $piano-black-key-name-left: 'c-sharp', 'd-sharp';
@@ -76,7 +98,7 @@ $piano-white-key-color: #fff;
     $t-left: $t-left + $t-width + $piano-black-key-width + 2 * $piano-key-padding;
   }
 
-  $black-left: $t-width + $piano-key-padding;
+  $black-left: $t-width;
   @each $key-name in $piano-black-key-name-left {
     @include piano-black-key($key-name, $black-left);
     $black-left: $black-left + $piano-black-key-width + $t-width + 2 * $piano-key-padding;
@@ -91,9 +113,61 @@ $piano-white-key-color: #fff;
     $t-left: $t-left + $t-width + $piano-black-key-width + 2 * $piano-key-padding;
   }
   
-  $black-left: $black-left + $t-width + $piano-key-padding;
+  $black-left: $black-left + $t-width;
   @each $key-name in $piano-black-key-name-right {
     @include piano-black-key($key-name, $black-left);
     $black-left: $black-left + $piano-black-key-width + $t-width + 2 * $piano-key-padding;
   }
 }
+
+.chords {
+  display: inline-flex;
+  width: 100%;
+  height: 126px;
+
+  .chord {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 126px;
+    background-color: #fff;
+
+    .chord-name {
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      font-size: 18px;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+    }
+    .chord-nodes {
+      width: 100%;
+      overflow: hidden;
+        text-align: center;
+        width: 100% !important;
+
+      
+      .abcrendered {
+        svg {
+          margin: 0 auto;
+          text-align: center;
+          display: inline;
+        }
+
+        .staff-extra {
+          display: none;
+        }
+    
+        .staff.l0.v0.m0,
+        .note {
+          transform: translate(-10px, 0);
+        }
+      }
+    }
+  }
+
+}
+
+
+
