@@ -17,6 +17,33 @@ const basicChords = {
   'm7': ['1', '-3', '5', '-7']
 }
 
+const musicMode = {
+  'Iolian': [1, 3, 5, 6, 8, 10, 12]
+}
+
+const musicSeconde = {
+  'C': 1,
+  'D': 3,
+  'E': 5,
+  'F': 6,
+  'G': 8,
+  'A': 10,
+  'B': 12
+}
+
+const musicSecondeSort = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+
+const musicSignature = {
+  '': 0,
+  '=': 0,
+  '^': 1,
+  '^^': 2,
+  '^^^': 3,
+  '_': -1,
+  '__': -2,
+  '___': -3
+}
+
 const musicInterval = {
   1: 0,
   2: 2,
@@ -44,15 +71,25 @@ const musicIntervalQuality = {
  * @param {number} note A note Integer from 1 to \infty
  */
 function toLegalNote (note) {
+  if (typeof note !== 'number') {
+    console.error('Note should be a number!')
+  }
   return (note - 1) % 12 + 1
 }
 
 function toLegalNumber (num) {
+  if (typeof num !== 'number') {
+    console.error('Number should be a number!')
+  }
   return (num - 1) % 7 + 1
 }
 
-function toNote (tone, degree) {
-  const musicIntervalRegExp = /([=+-]*)(\d+)/
+const musicIntervalRegExp = /([=+-]*)(\d+)/
+
+function toNoteByDegree (tone, degree) {
+  if (typeof tone !== 'number' || typeof degree !== 'string') {
+    console.error('Tone should be a number and Degree should be a string!')
+  }
   let [, quality, num] = musicIntervalRegExp.exec(degree)
   num = parseInt(num)
   let half = 0
@@ -68,7 +105,95 @@ function toNote (tone, degree) {
 }
 
 function equalNote (note, tone, degree) {
-  return toLegalNote(note) === toNote(tone, degree)
+  if (typeof note !== 'number') {
+    console.error('Note should be a number!')
+  }
+  return toLegalNote(note) === toNoteByDegree(tone, degree)
+}
+
+function noteHalfDistance (note1, note2) {
+  let k = note2 - note1
+  if (k > 3) {
+    return (k - 12) % 12
+  } else if (k >= -3) {
+    return k % 12
+  } else {
+    return (k + 12) % 12
+  }
+}
+
+function toSignature (distance) {
+  if (distance >= 0) {
+    return {
+      0: '=',
+      1: '^',
+      2: '^^',
+      3: '^^^'
+    }[distance]
+  } else {
+    return {
+      1: '_',
+      2: '__',
+      3: '___'
+    }[-distance]
+  }
+}
+
+const solfegeRegExp = /([=_^]*)([A-Ga-g])/
+function toSolfege (tone, degree) {
+  const modeFirstNote = {
+    1: 'C',
+    2: '^C',
+    3: 'D',
+    4: '_E',
+    5: 'E',
+    6: 'F',
+    7: '_G',
+    8: 'G',
+    9: '_A',
+    10: 'A',
+    11: '_B',
+    12: 'B'
+  }
+  let [, toneSignature, toneSolfege] = solfegeRegExp.exec(modeFirstNote[tone])
+  toneSolfege.toUpperCase()
+  let [, quality, num] = musicIntervalRegExp.exec(degree)
+  num = toLegalNumber(parseInt(num))
+
+  let targetSolfege = musicSecondeSort[toLegalNumber(musicSecondeSort.indexOf(toneSolfege) + num) - 1]
+
+  let noteShouldBe = musicSeconde[targetSolfege]
+  let noteActuallyBe = toNoteByDegree(tone, degree)
+  let targetSignature = toSignature(noteHalfDistance(noteShouldBe, noteActuallyBe))
+  /*
+  let toneHalf = toLegalNote(musicSeconde[toneSolfege] + musicSignature[toneSignature])
+  let modeHalf = toneHalf + musicMode['Iolian'][num - 1] - 1
+  console.log('noteHalfDistance', noteHalfDistance(noteShouldBe, noteActuallyBe))
+  console.log('num:', num, musicSecondeSort.indexOf(toneSolfege), toLegalNumber(7 + num + musicSecondeSort.indexOf(toneSolfege)) - 1)
+  console.log(modeHalf, noteActuallyBe, noteShouldBe)
+  */
+  return targetSignature + targetSolfege
+}
+
+function toSolfegeByNote (note) {
+  if (typeof note !== 'number') {
+    console.error('Note should be a number!')
+  }
+  const solfegeByNote = {
+    1: 'C',
+    2: '^C',
+    3: 'D',
+    4: '^D',
+    5: 'E',
+    6: 'F',
+    7: '^F',
+    8: 'G',
+    9: '^G',
+    10: 'A',
+    11: '^A',
+    12: 'B'
+  }
+  return solfegeByNote[toLegalNote(note)]
 }
 
 // Try on ML
@@ -93,6 +218,9 @@ function makeInitialWeightMatrix () {
 let weightMatrix = makeInitialWeightMatrix()
 
 function toNoteArray (notes) {
+  if (!(notes instanceof Array)) {
+    console.error('Notes should be an array!')
+  }
   let newArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   for (let note of notes) {
     newArray[note - 1] = 1
@@ -101,14 +229,20 @@ function toNoteArray (notes) {
 }
 
 function toNoteArrayByChord (tone, chord) {
+  if (typeof tone !== 'number' || (typeof chord !== 'string')) {
+    console.error('Tone should be a number and Chord should be a string!')
+  }
   let notes = []
   for (let degree of basicChords[chord]) {
-    notes.push(toNote(tone, degree))
+    notes.push(toNoteByDegree(tone, degree))
   }
   return toNoteArray(notes)
 }
 
 function getChordIndex (chord) {
+  if (typeof chord !== 'string') {
+    console.error('Chord should be a string!')
+  }
   let chordIndex = 0
   for (let i in basicChords) {
     if (i === chord) {
@@ -120,6 +254,9 @@ function getChordIndex (chord) {
 }
 
 function toChordArray (tone, chord) {
+  if (typeof tone !== 'number' || (typeof chord !== 'string')) {
+    console.error('Tone should be a number and Chord should be a string!')
+  }
   let newArray = []
   let chordIndex = 0
   for (let i in basicChords) {
@@ -133,6 +270,12 @@ function toChordArray (tone, chord) {
 }
 
 function learningChords (notes, tone, chord) {
+  if (!(notes instanceof Array)) {
+    console.error('Notes should be an array!')
+  }
+  if (typeof tone !== 'number' || (typeof chord !== 'string')) {
+    console.error('Tone should be a number and Chord should be a string!')
+  }
   let expectedChordArray = toChordArray(tone, chord)
   let count = 0
   for (let weight of weightMatrix) {
@@ -150,8 +293,8 @@ function learningChords (notes, tone, chord) {
 }
 
 function findChords (notes) {
-  if (!notes) {
-    return []
+  if (!(notes instanceof Array)) {
+    console.error('Notes should be an array!')
   }
   let predictChordArray = []
   for (let weight of weightMatrix) {
@@ -166,6 +309,9 @@ function findChords (notes) {
 }
 
 function sortTheResult (predictChordArray) {
+  if (!(predictChordArray instanceof Array)) {
+    console.error('PredictChordArray should be and array!')
+  }
   let predictChordArrayWithText = []
   for (let chord in basicChords) {
     for (let tone = 1; tone <= 12; tone++) {
@@ -182,20 +328,34 @@ function sortTheResult (predictChordArray) {
   return predictChordArrayWithText
 }
 
-for (let k = 1; k <= 100; k++) {
-  for (let tone = 1; tone <= 12; tone++) {
-    for (let chord in basicChords) {
-      learningChords(toNoteArrayByChord(tone, chord), tone, chord)
+function main () {
+  let startTime = Date.now()
+  for (let k = 1; k <= 100; k++) {
+    for (let tone = 1; tone <= 12; tone++) {
+      for (let chord in basicChords) {
+        learningChords(toNoteArrayByChord(tone, chord), tone, chord)
+      }
     }
   }
-}
+  let endTime = Date.now()
+  console.log('Learning Time:', endTime - startTime, 'ms')
 
-console.log(weightMatrix)
+  console.log('PREDICT!!')
+  for (let tone = 1; tone <= 12; tone++) {
+    for (let chord in basicChords) {
+      let predict = sortTheResult(findChords(toNoteArrayByChord(tone, chord)))
+      console.log(tone + chord, predict[0].tone + predict[0].chord, predict[1].tone + predict[1].chord, predict[2].tone + predict[2].chord)
+    }
+  }
 
-console.log('PREDICT!!')
-for (let tone = 1; tone <= 12; tone++) {
-  for (let chord in basicChords) {
-    let predict = sortTheResult(findChords(toNoteArrayByChord(tone, chord)))
-    console.log(tone + chord, predict[0].tone + predict[0].chord, predict[1].tone + predict[1].chord, predict[2].tone + predict[2].chord)
+  console.log('SOLVEGE!!')
+  for (let tone = 1; tone <= 12; tone++) {
+    let str = ''
+    for (let degree = 1; degree <= 8; degree++) {
+      str += toSolfege(tone, String(degree)) + ' '
+    }
+    console.log(tone, str)
   }
 }
+
+main()
