@@ -3,13 +3,15 @@
   margin: 0; }
 
 body {
-  background-color: #999; }
+  background-color: #999;
+  max-width: 600px;
+  margin: 0 auto; }
 
 .piano {
   user-select: none;
   position: relative;
-  width: 600px;
-  height: 200px;
+  width: 100%;
+  height: 350px;
   /*
     // lower part
     .piano-key-c {
@@ -168,8 +170,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50.90909px;
-    height: 356.36364px;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-c:active,
@@ -178,9 +180,9 @@ body {
   .piano .piano-key-d {
     position: absolute;
     top: 0;
-    left: 58.18182px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 14.54545%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-d:active,
@@ -189,9 +191,9 @@ body {
   .piano .piano-key-e {
     position: absolute;
     top: 0;
-    left: 116.36364px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 29.09091%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-e:active,
@@ -200,35 +202,47 @@ body {
   .piano .piano-key-c-sharp {
     position: absolute;
     top: 0;
-    left: 31.51515px;
-    width: 21.81818px;
-    height: 235.15152px;
+    left: 7.87879%;
+    width: 5.45455%;
+    height: 52.37412%;
     background-color: #333;
-    border-style: solid;
-    border-color: #999;
-    border-width: 0 7.27273px 7.27273px 7.27273px;
     z-index: 1000; }
+  .piano .piano-key-c-sharp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1.81818%;
+    width: 103.63636%;
+    height: 101.81818%;
+    background-color: #999;
+    z-index: 100; }
   .piano .piano-key-c-sharp:active {
     background-color: #555; }
   .piano .piano-key-d-sharp {
     position: absolute;
     top: 0;
-    left: 99.39394px;
-    width: 21.81818px;
-    height: 235.15152px;
+    left: 24.84848%;
+    width: 5.45455%;
+    height: 52.37412%;
     background-color: #333;
-    border-style: solid;
-    border-color: #999;
-    border-width: 0 7.27273px 7.27273px 7.27273px;
     z-index: 1000; }
+  .piano .piano-key-d-sharp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1.81818%;
+    width: 103.63636%;
+    height: 101.81818%;
+    background-color: #999;
+    z-index: 100; }
   .piano .piano-key-d-sharp:active {
     background-color: #555; }
   .piano .piano-key-f {
     position: absolute;
     top: 0;
-    left: 174.54545px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 43.63636%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-f:active,
@@ -237,9 +251,9 @@ body {
   .piano .piano-key-g {
     position: absolute;
     top: 0;
-    left: 232.72727px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 58.18182%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-g:active,
@@ -248,9 +262,9 @@ body {
   .piano .piano-key-a {
     position: absolute;
     top: 0;
-    left: 290.90909px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 72.72727%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-a:active,
@@ -259,9 +273,9 @@ body {
   .piano .piano-key-b {
     position: absolute;
     top: 0;
-    left: 349.09091px;
-    width: 50.90909px;
-    height: 356.36364px;
+    left: 87.27273%;
+    width: 12.72727%;
+    height: 79.37109%;
     background-color: #fff;
     z-index: 10; }
   .piano .piano-key-b:active,
@@ -270,40 +284,58 @@ body {
   .piano .piano-key-f-sharp {
     position: absolute;
     top: 0;
-    left: 203.63636px;
-    width: 21.81818px;
-    height: 235.15152px;
+    left: 50.90909%;
+    width: 5.45455%;
+    height: 52.37412%;
     background-color: #333;
-    border-style: solid;
-    border-color: #999;
-    border-width: 0 7.27273px 7.27273px 7.27273px;
     z-index: 1000; }
+  .piano .piano-key-f-sharp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1.81818%;
+    width: 103.63636%;
+    height: 101.81818%;
+    background-color: #999;
+    z-index: 100; }
   .piano .piano-key-f-sharp:active {
     background-color: #555; }
   .piano .piano-key-g-sharp {
     position: absolute;
     top: 0;
-    left: 269.09091px;
-    width: 21.81818px;
-    height: 235.15152px;
+    left: 67.27273%;
+    width: 5.45455%;
+    height: 52.37412%;
     background-color: #333;
-    border-style: solid;
-    border-color: #999;
-    border-width: 0 7.27273px 7.27273px 7.27273px;
     z-index: 1000; }
+  .piano .piano-key-g-sharp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1.81818%;
+    width: 103.63636%;
+    height: 101.81818%;
+    background-color: #999;
+    z-index: 100; }
   .piano .piano-key-g-sharp:active {
     background-color: #555; }
   .piano .piano-key-a-sharp {
     position: absolute;
     top: 0;
-    left: 334.54545px;
-    width: 21.81818px;
-    height: 235.15152px;
+    left: 83.63636%;
+    width: 5.45455%;
+    height: 52.37412%;
     background-color: #333;
-    border-style: solid;
-    border-color: #999;
-    border-width: 0 7.27273px 7.27273px 7.27273px;
     z-index: 1000; }
+  .piano .piano-key-a-sharp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1.81818%;
+    width: 103.63636%;
+    height: 101.81818%;
+    background-color: #999;
+    z-index: 100; }
   .piano .piano-key-a-sharp:active {
     background-color: #555; }
 
@@ -325,17 +357,25 @@ body {
       text-align: center;
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold; }
-    .chords .chord .chord-nodes {
+    .chords .chord .chord-notes {
       width: 100%;
       overflow: hidden;
       text-align: center;
       width: 100% !important; }
-      .chords .chord .chord-nodes .abcrendered svg {
+      .chords .chord .chord-notes svg {
         margin: 0 auto;
         text-align: center;
         display: inline; }
-      .chords .chord .chord-nodes .abcrendered .staff-extra {
-        display: none; }
-      .chords .chord .chord-nodes .abcrendered .staff.l0.v0.m0,
-      .chords .chord .chord-nodes .abcrendered .note {
-        transform: translate(-10px, 0); }
+        .chords .chord .chord-notes svg .staff-extra {
+          display: none; }
+        .chords .chord .chord-notes svg .staff.l0.v0.m0,
+        .chords .chord .chord-notes svg .note {
+          transform: translate(-10px, 0); }
+
+.clear-input button {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #333;
+  font-size: 15px;
+  border-radius: none;
+  background-color: transparent; }

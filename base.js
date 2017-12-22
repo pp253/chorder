@@ -12,7 +12,7 @@
 const basicChords = {
   '': ['1', '+3', '5'],
   'm': ['1', '-3', '5'],
-  '^7': ['1', '+3', '5', '-7'],
+  '7': ['1', '+3', '5', '-7'],
   'maj7': ['1', '+3', '5', '+7'],
   'm7': ['1', '-3', '5', '-7']
 }
@@ -328,6 +328,40 @@ function sortTheResult (predictChordArray) {
   return predictChordArrayWithText
 }
 
+function drawNotes (id, name = 'input', chordString) {
+  let engraverParams = {}
+  engraverParams.add_classes = true
+  engraverParams.staffwidth = 90
+  engraverParams.paddingtop = 0
+  engraverParams.paddingright = 0
+  engraverParams.paddingbottom = 0
+  engraverParams.paddingleft = 0
+
+  let abcstring = `X: 1
+  L:1/1
+  [${chordString}]`
+
+  document.getElementById(`chord-name-${id}`).innerText = name
+  document.getElementById(`chord-notes-${id}`).innerHTML = ''
+  window.ABCJS.renderAbc(document.getElementById(`chord-notes-${id}`), abcstring, null, engraverParams)
+}
+
+function drawChord (id, tone, chord) {
+  let chordString = ''
+  for (let degree of basicChords[chord]) {
+    chordString += toSolfege(tone, degree)
+  }
+
+  drawNotes(id, toSolfege(tone, '1') + chord, chordString)
+}
+
+function triggerFind (notes) {
+  let predict = sortTheResult(findChords(toNoteArray(notes)))
+  for (let i = 0; i < 4; i++) {
+    drawChord(i + 1, predict[i].tone, predict[i].chord)
+  }
+}
+
 function main () {
   let startTime = Date.now()
   for (let k = 1; k <= 100; k++) {
@@ -358,4 +392,23 @@ function main () {
   }
 }
 
+let userNotes = []
+
 main()
+
+$.when($.ready).then(() => {
+  $('#clear-input').click(() => {
+    userNotes = []
+  })
+
+  let list = ['c', 'c-sharp', 'd', 'd-sharp', 'e', 'f', 'f-sharp', 'g', 'g-sharp', 'a', 'a-sharp', 'b']
+  for (let i = 0; i < 12; i++) {
+    $(`#piano-key-${list[i]}`).click(function () {
+      if (!userNotes.includes(i + 1)) {
+        userNotes.push(i + 1)
+        triggerFind(userNotes)
+        console.log(userNotes)
+      }
+    })
+  }
+})

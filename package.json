@@ -16,6 +16,9 @@
       "/dist/*"
     ],
     "parser": "babel-eslint",
-    "globals": []
+    "globals": [
+      "ABCJS",
+      "$"
+    ]
   }
 }

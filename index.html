@@ -10,8 +10,8 @@
 <body>
   <div class="chords">
     <div class="chord">
-      <div class="chord-name">C</div>
-      <div class="chord-nodes">
+      <div class="chord-name" id="chord-name-1">C</div>
+      <div class="chord-notes" id="chord-notes-1">
         <div class="abctext">X: 1
           L:1/1
           [CEG]
@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="chord">
-      <div class="chord-name">Cm7</div>
-      <div class="chord-nodes">
+      <div class="chord-name" id="chord-name-2">Cm7</div>
+      <div class="chord-notes" id="chord-notes-2">
         <div class="abctext">X: 1
             L:1/1
             [C^DE^G]
@@ -28,8 +28,8 @@
       </div>
     </div>
     <div class="chord">
-      <div class="chord-name">C</div>
-      <div class="chord-nodes">
+      <div class="chord-name" id="chord-name-3">C</div>
+      <div class="chord-notes" id="chord-notes-3">
         <div class="abctext">X: 1
             L:1/1
             [C^DE^G]
@@ -37,8 +37,8 @@
       </div>
     </div>
     <div class="chord">
-      <div class="chord-name">C</div>
-      <div class="chord-nodes">
+      <div class="chord-name" id="chord-name-4">C</div>
+      <div class="chord-notes" id="chord-notes-4">
         <div class="abctext">X: 1
             L:1/1
             [C^DE^G]
@@ -62,16 +62,12 @@
       <div id="piano-key-b" class="piano-key piano-key-b"></div>
     </div>
   </div>
+  <div class="clear-input">
+    <button onclick="" id="clear-input">CLEAR INPUT</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
+  <script src="https://abcjs.net/abcjs_basic_midi_3.2.0-min.js" type="text/javascript"></script>
   <script src="./base.js"></script>
-  <script src="https://abcjs.net/abcjs_plugin_3.2.0-min.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    ABCJS.plugin.hide_abc = true
-    ABCJS.plugin.render_options.add_classes = true
-    ABCJS.plugin.render_options.staffwidth = 140
-    ABCJS.plugin.render_options.paddingtop = 0
-    ABCJS.plugin.render_options.paddingright = 0
-    ABCJS.plugin.render_options.paddingbottom = 0
-    ABCJS.plugin.render_options.paddingleft = 0
-  </script>
 </body>
 </html>
