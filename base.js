@@ -283,7 +283,7 @@ function learningChords (notes, tone, chord) {
     for (let i = 0; i < 12; i++) {
       nIn += (0 + !!notes[i]) * (weight[i])
     }
-    let nOut = 1 / (1 + Math.exp(-nIn))
+    let nOut = 1 / (1 + Math.exp(-nIn)) // Sigmoid Function
     let y = expectedChordArray[count] ? 1 : 0
     for (let i = 0; i < 12; i++) {
       weight[i] = weight[i] - learningRate * (nOut - y) * notes[i]
@@ -302,7 +302,7 @@ function findChords (notes) {
     for (let i = 0; i < 12; i++) {
       nIn += (0 + !!notes[i]) * (weight[i])
     }
-    let nOut = 1 / (1 + Math.exp(-nIn))
+    let nOut = 1 / (1 + Math.exp(-nIn)) // Sigmoid Function
     predictChordArray.push(nOut)
   }
   return predictChordArray
@@ -374,6 +374,7 @@ function triggerFind (notes) {
 }
 
 function main () {
+  // Learning
   let startTime = Date.now()
   for (let k = 1; k <= 100; k++) {
     for (let tone = 1; tone <= 12; tone++) {
@@ -383,8 +384,13 @@ function main () {
     }
   }
   let endTime = Date.now()
-  console.log('Learning Time:', endTime - startTime, 'ms')
 
+  console.log('Supported Chord:', basicChords)
+  console.log('Learning Rate:', learningRate)
+  console.log('Learning Times:', 100, 'round')
+  console.log('Learning Duration:', endTime - startTime, 'ms')
+
+  /*
   console.log('PREDICT!!')
   for (let tone = 1; tone <= 12; tone++) {
     for (let chord in basicChords) {
@@ -401,6 +407,7 @@ function main () {
     }
     console.log(tone, str)
   }
+  */
 }
 main()
 
@@ -417,7 +424,6 @@ $.when($.ready).then(() => {
       if (!userNotes.includes(i + 1)) {
         userNotes.push(i + 1)
         triggerFind(userNotes)
-        console.log(userNotes)
       }
     })
   }
