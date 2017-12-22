@@ -5,27 +5,30 @@
 
 body {
   background-color: #999;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .piano {
   user-select: none;
   position: relative;
 
-  width: 600px;
-  height: 200px;
+  width: 100%;
+  height: 60%;
+  min-height: 600px * 0.8909;
 
-  $piano-ratio: 400px / (21px * 7 + 3px * 6);
+  $piano-ratio: 100% / (21px * 7 + 3px * 6);
+  $piano-ratio-height: $piano-ratio * 0.8909;
   $piano-key-padding: 3px * $piano-ratio;
   $piano-background-color: #999;
   
   $piano-black-key-width: 9px * $piano-ratio;
-  $piano-black-key-height: 97px * $piano-ratio;
+  $piano-black-key-height: 97px * $piano-ratio-height;
   $piano-black-key-color: #333;
   
   $piano-white-key-width: 21px * $piano-ratio;
-  $piano-white-key-height: 147px * $piano-ratio;
+  $piano-white-key-height: 147px * $piano-ratio-height;
   $piano-white-key-color: #fff;
-  
   
   @mixin piano-white-key($key-name, $left, $t-left, $t-width) {
     // lower part
@@ -74,11 +77,24 @@ body {
       width: $piano-black-key-width;
       height: $piano-black-key-height;
       background-color: $piano-black-key-color;
+      z-index: 1000;
       border-style: solid;
       border-color: $piano-background-color;
       border-width: 0 $piano-key-padding $piano-key-padding $piano-key-padding;
-      z-index: 1000;
+      border-top-width: 0;
     }
+    /*
+    #{".piano-key-" + $key-name}::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */
     #{".piano-key-" + $key-name}:active {
       background-color: #555;
     }
@@ -141,19 +157,16 @@ body {
       font-family: 'Times New Roman', Times, serif;
       font-weight: bold;
     }
-    .chord-nodes {
+    .chord-notes {
       width: 100%;
       overflow: hidden;
-        text-align: center;
-        width: 100% !important;
+      text-align: center;
+      width: 100% !important;
 
-      
-      .abcrendered {
-        svg {
-          margin: 0 auto;
-          text-align: center;
-          display: inline;
-        }
+      svg {
+        margin: 0 auto;
+        text-align: center;
+        display: inline;
 
         .staff-extra {
           display: none;
@@ -166,8 +179,14 @@ body {
       }
     }
   }
-
 }
 
-
-
+.clear-input button {
+  width: 100%;
+  height: 40px;
+  border: 2px solid #333;
+  font-size: 15px;
+  border-radius: none;
+  background-color: transparent;
+  box-sizing: border-box;
+}

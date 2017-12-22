@@ -346,13 +346,17 @@ function drawNotes (id, name = 'input', chordString) {
   window.ABCJS.renderAbc(document.getElementById(`chord-notes-${id}`), abcstring, null, engraverParams)
 }
 
+function toReadableChordName (tone, chord) {
+  return tone.replace('=', '').replace('^', '♯').replace('_', '♭') + chord
+}
+
 function drawChord (id, tone, chord) {
   let chordString = ''
   for (let degree of basicChords[chord]) {
     chordString += toSolfege(tone, degree)
   }
 
-  drawNotes(id, toSolfege(tone, '1') + chord, chordString)
+  drawNotes(id, toReadableChordName(toSolfege(tone, '1'), chord), chordString)
 }
 
 function triggerFind (notes) {
@@ -391,10 +395,9 @@ function main () {
     console.log(tone, str)
   }
 }
+main()
 
 let userNotes = []
-
-main()
 
 $.when($.ready).then(() => {
   $('#clear-input').click(() => {
