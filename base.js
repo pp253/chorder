@@ -347,7 +347,14 @@ function drawNotes (id, name = 'input', chordString) {
 }
 
 function toReadableChordName (tone, chord) {
-  return tone.replace('=', '').replace('^', '♯').replace('_', '♭') + chord
+  if (tone.includes('^')) {
+    tone = tone.replace('^', '') + '♯'
+  } else if (tone.includes('_')) {
+    tone = tone.replace('_', '') + '♭'
+  } else if (tone.includes('=')) {
+    tone = tone.replace('=', '')
+  }
+  return tone + chord
 }
 
 function drawChord (id, tone, chord) {
