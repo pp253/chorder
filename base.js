@@ -371,7 +371,10 @@ function drawChord (id, tone, chord) {
 }
 
 function triggerFind (notes) {
+  let st = Date.now()
   let predict = sortTheResult(findChords(toNoteArray(notes)))
+  let et = Date.now()
+  console.log('Sort the result:', et - st, 'ms')
   for (let i = 0; i < 3; i++) {
     drawChord(i + 1, predict[i].tone, predict[i].chord)
   }
