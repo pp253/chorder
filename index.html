@@ -4,8 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chorder</title>
-
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style/chorder.css">
 </head>
 <body>
   <nav>
@@ -38,6 +37,21 @@
       <button id="delete-input">DELETE</button>
     </div>
   </div>
+  <div class="help-section-wrapper" id="help-section" style="display: none;">
+    <div class="help-section">
+      <h2>What is Chorder?</h2>
+      <p>Play the pitch you heard, and Chorder will give you what the chord it is.</p>
+      <h2>How to use?</h2>
+      <p>Just play the piano below. The nearest chord will appear above the piano.</p>
+      <h2>Contributor</h2>
+      <p>Made by <a href="https://github.com/pp253">pp253</a>. Get more on <a href="https://github.com/pp253/chorder">GitHub</a>.</p>
+      <h2>Dependencies</h2>
+      <ul>
+        <li><a href="https://github.com/paulrosen/abcjs">abcjs</a></li>
+        <li><a href="https://jquery.com/">jQuery</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="piano-wrapper">
     <div class="piano">
       <div id="piano-key-c" class="piano-key piano-key-c"></div>
@@ -56,7 +70,8 @@
   </div>
 
   <footer>
-    Made by <a href="https://github.com/pp253">pp253</a>. Get more on <a href="https://github.com/pp253/chorder">GitHub</a>.
+    <p>Chorder</p>
+    <p>Made by <a href="https://github.com/pp253">pp253</a>. Get more on <a href="https://github.com/pp253/chorder">GitHub</a>.</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>

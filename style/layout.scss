@@ -1,0 +1,158 @@
+@import 'constant';
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Microsoft JhengHei', 'Noto Sans', Helvetica, Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: $main-background-color;
+}
+
+.chords-wrapper {
+  background-color: #eee;
+  padding-top: 10px;
+
+  .chords {
+    display: block;
+    width: 100%;
+    max-width: $main-max-width;
+    margin: 0 auto;
+    height: 115.8px;
+  
+    .chord {
+      display: inline-flex;
+      margin: 0;
+      flex-direction: column;
+      width: 25%;
+      height: 100%;
+      float: left;
+  
+      .chord-name,
+      .chord-name sup,
+      .chord-name sub {        
+        font-family: 'Times New Roman', Times, serif;
+      }
+      .chord-name {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        overflow: hidden;
+      }
+      .chord-notes {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        width: 100% !important;
+  
+        svg {
+          margin: 0 auto;
+          text-align: center;
+          display: inline;
+  
+          .staff-extra {
+            display: none;
+          }
+      
+          .staff.l0.v0.m0,
+          .note {
+            transform: translate(-10px, 0);
+          }
+        }
+      }
+    }
+  }
+}
+
+.control-panel-wrapper {
+  background-color: #222;
+  .control-panel  {
+    width: 100%;
+    height: 30px;
+    max-width: $main-max-width;
+    margin: 0 auto;
+    padding: 10px 0;
+  
+    button {
+      padding: 0 10px;
+      height: 30px;
+      border: 2px solid #fff;
+      font-size: 16px;
+      color: #fff;
+      border-radius: none;
+      background-color: transparent;
+      box-sizing: border-box;
+    }
+
+    button#help-input {
+      float: left;
+    }
+    button#delete-input {
+      float: right;
+    }
+    button#clear-input {
+      box-sizing: border-box;
+      max-width: 200px;
+      width: 40%;
+      margin-left: 10px;
+      float: right;
+    }
+
+    button:active {
+      background-color: #555;
+    }
+  }
+}
+
+.help-section-wrapper {
+  padding: 10px 0 20px 0;
+  background-color: #222;
+
+  .help-section {
+    width: 100%;
+    max-width: $main-max-width;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    h2 {
+      padding: 0 12px;
+      padding-top: 10px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    p {
+      padding: 0 12px;
+      color: #ddd;
+      font-size: 16px;
+    }
+    a {
+      color: #ddd;
+    }
+    ul {
+      padding: 0 12px;
+      margin-left: 20px;
+      color: #aaa;
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  max-width: $main-max-width;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  text-align: center;
+  color: #bbb;
+  a {
+    color: #bbb;
+  }
+}

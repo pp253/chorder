@@ -1,0 +1,490 @@
+.piano-wrapper {
+  background-color: #555; }
+
+.piano {
+  user-select: none;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  height: 60%;
+  min-height: 534.54px;
+  /*
+    // lower part
+    .piano-key-c {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-c:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-d {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-d:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-e {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-e:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    .piano-key-c-sharp::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */
+  /*
+    .piano-key-d-sharp::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-f {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-f:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-g {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-g:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-a {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-a:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    // lower part
+    .piano-key-b {
+      position: absolute;
+      top: $piano-black-key-height + $piano-key-padding;
+      left: $left;
+      width: $piano-white-key-width;
+      height: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      background-color: $piano-white-key-color;
+      z-index: 10;
+    }
+    // upper part
+    .piano-key-b:before {
+      content: "";
+      position: absolute;
+      bottom: $piano-white-key-height - $piano-black-key-height - $piano-key-padding;
+      left: $t-left;
+      width: $t-width;
+      height: $piano-black-key-height + $piano-key-padding;
+      background-color: $piano-white-key-color;
+    }
+    */
+  /*
+    .piano-key-f-sharp::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */
+  /*
+    .piano-key-g-sharp::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */
+  /*
+    .piano-key-a-sharp::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -$piano-key-padding;
+      width: 100% + 2 * $piano-key-padding;
+      height: 100% + $piano-key-padding;
+      background-color: $piano-background-color;
+      z-index: 100;
+    }
+    */ }
+  .piano .piano-key-c {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-c:active,
+  .piano .piano-key-c:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-d {
+    position: absolute;
+    top: 0;
+    left: 14.54545%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-d:active,
+  .piano .piano-key-d:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-e {
+    position: absolute;
+    top: 0;
+    left: 29.09091%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-e:active,
+  .piano .piano-key-e:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-c-sharp {
+    position: absolute;
+    top: 0;
+    left: 7.87879%;
+    width: 5.45455%;
+    height: 52.37412%;
+    background-color: #222;
+    z-index: 1000;
+    border-style: solid;
+    border-color: #555;
+    border-width: 0 1.81818% 1.81818% 1.81818%;
+    border-top-width: 0; }
+  .piano .piano-key-c-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-d-sharp {
+    position: absolute;
+    top: 0;
+    left: 24.84848%;
+    width: 5.45455%;
+    height: 52.37412%;
+    background-color: #222;
+    z-index: 1000;
+    border-style: solid;
+    border-color: #555;
+    border-width: 0 1.81818% 1.81818% 1.81818%;
+    border-top-width: 0; }
+  .piano .piano-key-d-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-f {
+    position: absolute;
+    top: 0;
+    left: 43.63636%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-f:active,
+  .piano .piano-key-f:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-g {
+    position: absolute;
+    top: 0;
+    left: 58.18182%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-g:active,
+  .piano .piano-key-g:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-a {
+    position: absolute;
+    top: 0;
+    left: 72.72727%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-a:active,
+  .piano .piano-key-a:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-b {
+    position: absolute;
+    top: 0;
+    left: 87.27273%;
+    width: 12.72727%;
+    height: 79.37109%;
+    background-color: #FFFFF0;
+    z-index: 10; }
+  .piano .piano-key-b:active,
+  .piano .piano-key-b:active:before {
+    background-color: #ccc; }
+  .piano .piano-key-f-sharp {
+    position: absolute;
+    top: 0;
+    left: 50.90909%;
+    width: 5.45455%;
+    height: 52.37412%;
+    background-color: #222;
+    z-index: 1000;
+    border-style: solid;
+    border-color: #555;
+    border-width: 0 1.81818% 1.81818% 1.81818%;
+    border-top-width: 0; }
+  .piano .piano-key-f-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-g-sharp {
+    position: absolute;
+    top: 0;
+    left: 67.27273%;
+    width: 5.45455%;
+    height: 52.37412%;
+    background-color: #222;
+    z-index: 1000;
+    border-style: solid;
+    border-color: #555;
+    border-width: 0 1.81818% 1.81818% 1.81818%;
+    border-top-width: 0; }
+  .piano .piano-key-g-sharp:active {
+    background-color: #555; }
+  .piano .piano-key-a-sharp {
+    position: absolute;
+    top: 0;
+    left: 83.63636%;
+    width: 5.45455%;
+    height: 52.37412%;
+    background-color: #222;
+    z-index: 1000;
+    border-style: solid;
+    border-color: #555;
+    border-width: 0 1.81818% 1.81818% 1.81818%;
+    border-top-width: 0; }
+  .piano .piano-key-a-sharp:active {
+    background-color: #555; }
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Microsoft JhengHei', 'Noto Sans', Helvetica, Arial, Helvetica, sans-serif; }
+
+body {
+  background-color: #555; }
+
+.chords-wrapper {
+  background-color: #eee;
+  padding-top: 10px; }
+  .chords-wrapper .chords {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 115.8px; }
+    .chords-wrapper .chords .chord {
+      display: inline-flex;
+      margin: 0;
+      flex-direction: column;
+      width: 25%;
+      height: 100%;
+      float: left; }
+      .chords-wrapper .chords .chord .chord-name,
+      .chords-wrapper .chords .chord .chord-name sup,
+      .chords-wrapper .chords .chord .chord-name sub {
+        font-family: 'Times New Roman', Times, serif; }
+      .chords-wrapper .chords .chord .chord-name {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: bold;
+        overflow: hidden; }
+      .chords-wrapper .chords .chord .chord-notes {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        width: 100% !important; }
+        .chords-wrapper .chords .chord .chord-notes svg {
+          margin: 0 auto;
+          text-align: center;
+          display: inline; }
+          .chords-wrapper .chords .chord .chord-notes svg .staff-extra {
+            display: none; }
+          .chords-wrapper .chords .chord .chord-notes svg .staff.l0.v0.m0,
+          .chords-wrapper .chords .chord .chord-notes svg .note {
+            transform: translate(-10px, 0); }
+
+.control-panel-wrapper {
+  background-color: #222; }
+  .control-panel-wrapper .control-panel {
+    width: 100%;
+    height: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 0; }
+    .control-panel-wrapper .control-panel button {
+      padding: 0 10px;
+      height: 30px;
+      border: 2px solid #fff;
+      font-size: 16px;
+      color: #fff;
+      border-radius: none;
+      background-color: transparent;
+      box-sizing: border-box; }
+    .control-panel-wrapper .control-panel button#help-input {
+      float: left; }
+    .control-panel-wrapper .control-panel button#delete-input {
+      float: right; }
+    .control-panel-wrapper .control-panel button#clear-input {
+      box-sizing: border-box;
+      max-width: 200px;
+      width: 40%;
+      margin-left: 10px;
+      float: right; }
+    .control-panel-wrapper .control-panel button:active {
+      background-color: #555; }
+
+.help-section-wrapper {
+  padding: 10px 0 20px 0;
+  background-color: #222; }
+  .help-section-wrapper .help-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-sizing: border-box; }
+    .help-section-wrapper .help-section h2 {
+      padding: 0 12px;
+      padding-top: 10px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold; }
+    .help-section-wrapper .help-section p {
+      padding: 0 12px;
+      color: #ddd;
+      font-size: 16px; }
+    .help-section-wrapper .help-section a {
+      color: #ddd; }
+    .help-section-wrapper .help-section ul {
+      padding: 0 12px;
+      margin-left: 20px;
+      color: #aaa; }
+
+footer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
+  color: #bbb; }
+  footer a {
+    color: #bbb; }
