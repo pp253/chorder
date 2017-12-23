@@ -255,10 +255,15 @@ sub {
     }
     button#delete-input {
       float: right;
-      margin-left: 10px;
     }
     button#clear-input {
+      padding: 0 50px;
+      margin-left: 10px;
       float: right;
+    }
+
+    button:active {
+      background-color: #555;
     }
   }
 }

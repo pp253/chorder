@@ -148,7 +148,7 @@ function toSolfege (tone, degree) {
     4: '_E',
     5: 'E',
     6: 'F',
-    7: '_G',
+    7: '^F',
     8: 'G',
     9: '_A',
     10: 'A',
@@ -348,9 +348,9 @@ function drawNotes (id, name = 'input', chordString) {
 
 function toReadableChordName (tone, chord) {
   if (tone.includes('^')) {
-    tone = tone.replace('^', '') + '♯'
+    tone = '<sup>♯</sup>' + tone.replace('^', '')
   } else if (tone.includes('_')) {
-    tone = tone.replace('_', '') + '♭'
+    tone = '<sup>♭</sup>' + tone.replace('_', '')
   } else if (tone.includes('=')) {
     tone = tone.replace('=', '')
   }

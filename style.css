@@ -463,10 +463,13 @@ sub {
     .control-panel-wrapper .control-panel button#help-input {
       float: left; }
     .control-panel-wrapper .control-panel button#delete-input {
-      float: right;
-      margin-left: 10px; }
-    .control-panel-wrapper .control-panel button#clear-input {
       float: right; }
+    .control-panel-wrapper .control-panel button#clear-input {
+      padding: 0 50px;
+      margin-left: 10px;
+      float: right; }
+    .control-panel-wrapper .control-panel button:active {
+      background-color: #555; }
 
 footer {
   width: 100%;
