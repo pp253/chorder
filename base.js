@@ -108,10 +108,16 @@ function equalNote (note, tone, degree) {
   if (typeof note !== 'number') {
     console.error('Note should be a number!')
   }
+  if (typeof tone !== 'number' || typeof degree !== 'string') {
+    console.error('Tone should be a number and Degree should be a string!')
+  }
   return toLegalNote(note) === toNoteByDegree(tone, degree)
 }
 
 function noteHalfDistance (note1, note2) {
+  if (typeof note1 !== 'number' || typeof note2 !== 'number') {
+    console.error('Note1 and Note2 should be numbers!')
+  }
   let k = note2 - note1
   if (k > 3) {
     return (k - 12) % 12
@@ -123,6 +129,9 @@ function noteHalfDistance (note1, note2) {
 }
 
 function toSignature (distance) {
+  if (typeof distance !== 'number') {
+    console.error('Distance should be a number!')
+  }
   if (distance >= 0) {
     return {
       0: '=',
@@ -141,6 +150,9 @@ function toSignature (distance) {
 
 const solfegeRegExp = /([=_^]*)([A-Ga-g])/
 function toSolfege (tone, degree) {
+  if (typeof tone !== 'number' || typeof degree !== 'string') {
+    console.error('Tone should be a number and Degree should be a string!')
+  }
   const modeFirstNote = {
     1: 'C',
     2: '^C',
@@ -155,9 +167,9 @@ function toSolfege (tone, degree) {
     11: '_B',
     12: 'B'
   }
-  let [, toneSignature, toneSolfege] = solfegeRegExp.exec(modeFirstNote[tone])
+  let [, , toneSolfege] = solfegeRegExp.exec(modeFirstNote[tone])
   toneSolfege.toUpperCase()
-  let [, quality, num] = musicIntervalRegExp.exec(degree)
+  let [, , num] = musicIntervalRegExp.exec(degree)
   num = toLegalNumber(parseInt(num))
 
   let targetSolfege = musicSecondeSort[toLegalNumber(musicSecondeSort.indexOf(toneSolfege) + num) - 1]
@@ -165,13 +177,7 @@ function toSolfege (tone, degree) {
   let noteShouldBe = musicSeconde[targetSolfege]
   let noteActuallyBe = toNoteByDegree(tone, degree)
   let targetSignature = toSignature(noteHalfDistance(noteShouldBe, noteActuallyBe))
-  /*
-  let toneHalf = toLegalNote(musicSeconde[toneSolfege] + musicSignature[toneSignature])
-  let modeHalf = toneHalf + musicMode['Iolian'][num - 1] - 1
-  console.log('noteHalfDistance', noteHalfDistance(noteShouldBe, noteActuallyBe))
-  console.log('num:', num, musicSecondeSort.indexOf(toneSolfege), toLegalNumber(7 + num + musicSecondeSort.indexOf(toneSolfege)) - 1)
-  console.log(modeHalf, noteActuallyBe, noteShouldBe)
-  */
+
   return targetSignature + targetSolfege
 }
 
@@ -429,6 +435,13 @@ main()
 let userNotes = []
 
 $.when($.ready).then(() => {
+  $('#help-input').click(function () {
+    $('#help-section').toggle()
+    $(this).text(function (_, text) {
+      return text === 'HELP' ? 'CLOSE' : 'HELP'
+    })
+  })
+
   $('#clear-input').click(() => {
     userNotes = []
     updateUserChord(userNotes)
