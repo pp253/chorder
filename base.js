@@ -12,9 +12,9 @@
 const basicChords = {
   '': ['1', '+3', '5'],
   'm': ['1', '-3', '5'],
-  '7': ['1', '+3', '5', '-7'],
-  'maj7': ['1', '+3', '5', '+7'],
-  'm7': ['1', '-3', '5', '-7']
+  '<sup>7</sup>': ['1', '+3', '5', '-7'],
+  'maj<sup>7</sup>': ['1', '+3', '5', '+7'],
+  'm<sup>7</sup>': ['1', '-3', '5', '-7']
 }
 
 const musicMode = {
@@ -183,14 +183,14 @@ function toSolfegeByNote (note) {
     1: 'C',
     2: '^C',
     3: 'D',
-    4: '^D',
+    4: '_E',
     5: 'E',
     6: 'F',
     7: '^F',
     8: 'G',
     9: '^G',
     10: 'A',
-    11: '^A',
+    11: '_B',
     12: 'B'
   }
   return solfegeByNote[toLegalNote(note)]
@@ -341,7 +341,7 @@ function drawNotes (id, name = 'input', chordString) {
   L:1/1
   [${chordString}]`
 
-  document.getElementById(`chord-name-${id}`).innerText = name
+  document.getElementById(`chord-name-${id}`).innerHTML = name
   document.getElementById(`chord-notes-${id}`).innerHTML = ''
   window.ABCJS.renderAbc(document.getElementById(`chord-notes-${id}`), abcstring, null, engraverParams)
 }
@@ -357,10 +357,14 @@ function toReadableChordName (tone, chord) {
   return tone + chord
 }
 
+function toReadableSolvege (solfege) {
+  return solfege.replace(/=/, '')
+}
+
 function drawChord (id, tone, chord) {
   let chordString = ''
   for (let degree of basicChords[chord]) {
-    chordString += toSolfege(tone, degree)
+    chordString += toReadableSolvege(toSolfege(tone, degree))
   }
 
   drawNotes(id, toReadableChordName(toSolfege(tone, '1'), chord), chordString)
@@ -368,9 +372,17 @@ function drawChord (id, tone, chord) {
 
 function triggerFind (notes) {
   let predict = sortTheResult(findChords(toNoteArray(notes)))
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     drawChord(i + 1, predict[i].tone, predict[i].chord)
   }
+}
+
+function updateUserChord (notes) {
+  let chordString = ''
+  for (let note of notes) {
+    chordString += toSolfegeByNote(note)
+  }
+  drawNotes('user', 'You played', chordString)
 }
 
 function main () {
@@ -385,7 +397,7 @@ function main () {
   }
   let endTime = Date.now()
 
-  console.log('Supported Chord:', basicChords)
+  console.log('Supported Chords:', basicChords)
   console.log('Learning Rate:', learningRate)
   console.log('Learning Times:', 100, 'round')
   console.log('Learning Duration:', endTime - startTime, 'ms')
@@ -416,6 +428,13 @@ let userNotes = []
 $.when($.ready).then(() => {
   $('#clear-input').click(() => {
     userNotes = []
+    updateUserChord(userNotes)
+  })
+
+  $('#delete-input').click(() => {
+    userNotes.pop()
+    triggerFind(userNotes)
+    updateUserChord(userNotes)
   })
 
   let list = ['c', 'c-sharp', 'd', 'd-sharp', 'e', 'f', 'f-sharp', 'g', 'g-sharp', 'a', 'a-sharp', 'b']
@@ -424,6 +443,7 @@ $.when($.ready).then(() => {
       if (!userNotes.includes(i + 1)) {
         userNotes.push(i + 1)
         triggerFind(userNotes)
+        updateUserChord(userNotes)
       }
     })
   }

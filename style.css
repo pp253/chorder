@@ -3,13 +3,16 @@
   margin: 0; }
 
 body {
-  background-color: #999;
-  max-width: 600px;
-  margin: 0 auto; }
+  background-color: #555; }
+
+.piano-wrapper {
+  background-color: #555; }
 
 .piano {
   user-select: none;
   position: relative;
+  max-width: 600px;
+  margin: 0 auto;
   width: 100%;
   height: 60%;
   min-height: 534.54px;
@@ -233,7 +236,7 @@ body {
     left: 0;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-c:active,
   .piano .piano-key-c:active:before {
@@ -244,7 +247,7 @@ body {
     left: 14.54545%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-d:active,
   .piano .piano-key-d:active:before {
@@ -255,7 +258,7 @@ body {
     left: 29.09091%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-e:active,
   .piano .piano-key-e:active:before {
@@ -266,10 +269,10 @@ body {
     left: 7.87879%;
     width: 5.45455%;
     height: 52.37412%;
-    background-color: #333;
+    background-color: #222;
     z-index: 1000;
     border-style: solid;
-    border-color: #999;
+    border-color: #555;
     border-width: 0 1.81818% 1.81818% 1.81818%;
     border-top-width: 0; }
   .piano .piano-key-c-sharp:active {
@@ -280,10 +283,10 @@ body {
     left: 24.84848%;
     width: 5.45455%;
     height: 52.37412%;
-    background-color: #333;
+    background-color: #222;
     z-index: 1000;
     border-style: solid;
-    border-color: #999;
+    border-color: #555;
     border-width: 0 1.81818% 1.81818% 1.81818%;
     border-top-width: 0; }
   .piano .piano-key-d-sharp:active {
@@ -294,7 +297,7 @@ body {
     left: 43.63636%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-f:active,
   .piano .piano-key-f:active:before {
@@ -305,7 +308,7 @@ body {
     left: 58.18182%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-g:active,
   .piano .piano-key-g:active:before {
@@ -316,7 +319,7 @@ body {
     left: 72.72727%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-a:active,
   .piano .piano-key-a:active:before {
@@ -327,7 +330,7 @@ body {
     left: 87.27273%;
     width: 12.72727%;
     height: 79.37109%;
-    background-color: #fff;
+    background-color: #FFFFF0;
     z-index: 10; }
   .piano .piano-key-b:active,
   .piano .piano-key-b:active:before {
@@ -338,10 +341,10 @@ body {
     left: 50.90909%;
     width: 5.45455%;
     height: 52.37412%;
-    background-color: #333;
+    background-color: #222;
     z-index: 1000;
     border-style: solid;
-    border-color: #999;
+    border-color: #555;
     border-width: 0 1.81818% 1.81818% 1.81818%;
     border-top-width: 0; }
   .piano .piano-key-f-sharp:active {
@@ -352,10 +355,10 @@ body {
     left: 67.27273%;
     width: 5.45455%;
     height: 52.37412%;
-    background-color: #333;
+    background-color: #222;
     z-index: 1000;
     border-style: solid;
-    border-color: #999;
+    border-color: #555;
     border-width: 0 1.81818% 1.81818% 1.81818%;
     border-top-width: 0; }
   .piano .piano-key-g-sharp:active {
@@ -366,53 +369,101 @@ body {
     left: 83.63636%;
     width: 5.45455%;
     height: 52.37412%;
-    background-color: #333;
+    background-color: #222;
     z-index: 1000;
     border-style: solid;
-    border-color: #999;
+    border-color: #555;
     border-width: 0 1.81818% 1.81818% 1.81818%;
     border-top-width: 0; }
   .piano .piano-key-a-sharp:active {
     background-color: #555; }
 
-.chords {
-  display: inline-flex;
-  width: 100%;
-  height: 126px; }
-  .chords .chord {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    height: 126px;
-    background-color: #fff; }
-    .chords .chord .chord-name {
-      width: 100%;
-      height: 30px;
-      line-height: 30px;
-      font-size: 18px;
-      text-align: center;
-      font-family: 'Times New Roman', Times, serif;
-      font-weight: bold; }
-    .chords .chord .chord-notes {
-      width: 100%;
-      overflow: hidden;
-      text-align: center;
-      width: 100% !important; }
-      .chords .chord .chord-notes svg {
-        margin: 0 auto;
-        text-align: center;
-        display: inline; }
-        .chords .chord .chord-notes svg .staff-extra {
-          display: none; }
-        .chords .chord .chord-notes svg .staff.l0.v0.m0,
-        .chords .chord .chord-notes svg .note {
-          transform: translate(-10px, 0); }
+sub, sup {
+  /* Specified in % so that the sup/sup is the
+     right size relative to the surrounding text */
+  font-size: 75%;
+  /* Zero out the line-height so that it doesn't
+     interfere with the positioning that follows */
+  line-height: 0;
+  /* Where the magic happens: makes all browsers position
+     the sup/sup properly, relative to the surrounding text */
+  position: relative;
+  /* Note that if you're using Eric Meyer's reset.css, this
+     is already set and you can remove this rule */
+  vertical-align: baseline; }
 
-.clear-input button {
-  width: 100%;
-  height: 40px;
-  border: 2px solid #333;
-  font-size: 15px;
-  border-radius: none;
-  background-color: transparent;
-  box-sizing: border-box; }
+sup {
+  /* Move the superscripted text up */
+  top: -0.5em; }
+
+sub {
+  /* Move the subscripted text down, but only
+     half as far down as the superscript moved up */
+  bottom: -0.25em; }
+
+.chords-wrapper {
+  background-color: #eee;
+  padding-top: 10px; }
+  .chords-wrapper .chords {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    height: 115.8px; }
+    .chords-wrapper .chords .chord {
+      display: inline-flex;
+      margin: 0;
+      flex-direction: column;
+      width: 25%;
+      height: 100%;
+      float: left; }
+      .chords-wrapper .chords .chord .chord-name {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        overflow: hidden; }
+      .chords-wrapper .chords .chord .chord-notes {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        width: 100% !important; }
+        .chords-wrapper .chords .chord .chord-notes svg {
+          margin: 0 auto;
+          text-align: center;
+          display: inline; }
+          .chords-wrapper .chords .chord .chord-notes svg .staff-extra {
+            display: none; }
+          .chords-wrapper .chords .chord .chord-notes svg .staff.l0.v0.m0,
+          .chords-wrapper .chords .chord .chord-notes svg .note {
+            transform: translate(-10px, 0); }
+
+.control-panel-wrapper {
+  background-color: #222; }
+  .control-panel-wrapper .control-panel {
+    width: 100%;
+    height: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px 0; }
+    .control-panel-wrapper .control-panel button {
+      padding: 0 10px;
+      height: 30px;
+      border: 2px solid #fff;
+      font-size: 15px;
+      color: #fff;
+      border-radius: none;
+      background-color: transparent;
+      box-sizing: border-box; }
+    .control-panel-wrapper .control-panel button#help-input {
+      float: left; }
+    .control-panel-wrapper .control-panel button#delete-input {
+      float: right;
+      margin-left: 10px; }
+    .control-panel-wrapper .control-panel button#clear-input {
+      float: right; }

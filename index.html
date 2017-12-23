@@ -1,49 +1,38 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chorder</title>
 
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div class="chords">
-    <div class="chord">
-      <div class="chord-name" id="chord-name-1">C</div>
-      <div class="chord-notes" id="chord-notes-1">
-        <div class="abctext">X: 1
-          L:1/1
-          [CEG]
+  <div class="chords-wrapper">
+    <div class="chords">
+        <div class="chord">
+          <div class="chord-name" id="chord-name-user">You played</div>
+          <div class="chord-notes" id="chord-notes-user"></div>
+        </div>
+        <div class="chord">
+          <div class="chord-name" id="chord-name-1">1</div>
+          <div class="chord-notes" id="chord-notes-1"></div>
+        </div>
+        <div class="chord">
+          <div class="chord-name" id="chord-name-2">2</div>
+          <div class="chord-notes" id="chord-notes-2"></div>
+        </div>
+        <div class="chord">
+          <div class="chord-name" id="chord-name-3">3</div>
+          <div class="chord-notes" id="chord-notes-3"></div>
         </div>
       </div>
-    </div>
-    <div class="chord">
-      <div class="chord-name" id="chord-name-2">Cm7</div>
-      <div class="chord-notes" id="chord-notes-2">
-        <div class="abctext">X: 1
-            L:1/1
-            [C^DE^G]
-          </div>
-      </div>
-    </div>
-    <div class="chord">
-      <div class="chord-name" id="chord-name-3">C</div>
-      <div class="chord-notes" id="chord-notes-3">
-        <div class="abctext">X: 1
-            L:1/1
-            [C^DE^G]
-          </div>
-      </div>
-    </div>
-    <div class="chord">
-      <div class="chord-name" id="chord-name-4">C</div>
-      <div class="chord-notes" id="chord-notes-4">
-        <div class="abctext">X: 1
-            L:1/1
-            [C^DE^G]
-          </div>
-      </div>
+  </div>
+  <div class="control-panel-wrapper">
+    <div class="control-panel">
+      <button id="help-input">HELP</button>
+      <button id="delete-input">DELETE</button>
+      <button id="clear-input">CLEAR</button>
     </div>
   </div>
   <div class="piano-wrapper">
@@ -61,9 +50,6 @@
       <div id="piano-key-a-sharp" class="piano-key piano-key-a-sharp"></div>
       <div id="piano-key-b" class="piano-key piano-key-b"></div>
     </div>
-  </div>
-  <div class="clear-input">
-    <button onclick="" id="clear-input">CLEAR INPUT</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>

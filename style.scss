@@ -3,16 +3,24 @@
   margin: 0;
 }
 
+$main-background-color: #555;
+
+$main-max-width: 600px;
+
 body {
-  background-color: #999;
-  max-width: 600px;
-  margin: 0 auto;
+  background-color: $main-background-color;
+}
+
+.piano-wrapper {
+  background-color: #555;
 }
 
 .piano {
   user-select: none;
   position: relative;
 
+  max-width: $main-max-width;
+  margin: 0 auto;
   width: 100%;
   height: 60%;
   min-height: 600px * 0.8909;
@@ -20,15 +28,15 @@ body {
   $piano-ratio: 100% / (21px * 7 + 3px * 6);
   $piano-ratio-height: $piano-ratio * 0.8909;
   $piano-key-padding: 3px * $piano-ratio;
-  $piano-background-color: #999;
+  $piano-background-color: $main-background-color;
   
   $piano-black-key-width: 9px * $piano-ratio;
   $piano-black-key-height: 97px * $piano-ratio-height;
-  $piano-black-key-color: #333;
+  $piano-black-key-color: #222;
   
   $piano-white-key-width: 21px * $piano-ratio;
   $piano-white-key-height: 147px * $piano-ratio-height;
-  $piano-white-key-color: #fff;
+  $piano-white-key-color: #FFFFF0;
   
   @mixin piano-white-key($key-name, $left, $t-left, $t-width) {
     // lower part
@@ -136,57 +144,121 @@ body {
   }
 }
 
-.chords {
-  display: inline-flex;
-  width: 100%;
-  height: 126px;
+// https://gist.github.com/unruthless/413930
+sub, sup {
+  /* Specified in % so that the sup/sup is the
+     right size relative to the surrounding text */
+  font-size: 75%;
 
-  .chord {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
-    height: 126px;
-    background-color: #fff;
+  /* Zero out the line-height so that it doesn't
+     interfere with the positioning that follows */
+  line-height: 0;
 
-    .chord-name {
-      width: 100%;
-      height: 30px;
-      line-height: 30px;
-      font-size: 18px;
-      text-align: center;
-      font-family: 'Times New Roman', Times, serif;
-      font-weight: bold;
-    }
-    .chord-notes {
-      width: 100%;
-      overflow: hidden;
-      text-align: center;
-      width: 100% !important;
+  /* Where the magic happens: makes all browsers position
+     the sup/sup properly, relative to the surrounding text */
+  position: relative;
 
-      svg {
-        margin: 0 auto;
+  /* Note that if you're using Eric Meyer's reset.css, this
+     is already set and you can remove this rule */
+  vertical-align: baseline;
+}
+
+sup {
+  /* Move the superscripted text up */
+  top: -0.5em;
+}
+
+sub {
+  /* Move the subscripted text down, but only
+     half as far down as the superscript moved up */
+  bottom: -0.25em;
+}
+
+.chords-wrapper {
+  background-color: #eee;
+  padding-top: 10px;
+
+  .chords {
+    display: block;
+    width: 100%;
+    max-width: $main-max-width;
+    margin: 0 auto;
+    height: 115.8px;
+  
+    .chord {
+      display: inline-flex;
+      margin: 0;
+      flex-direction: column;
+      width: 25%;
+      height: 100%;
+      float: left;
+  
+      .chord-name {
+        display: block;
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
         text-align: center;
-        display: inline;
-
-        .staff-extra {
-          display: none;
-        }
-    
-        .staff.l0.v0.m0,
-        .note {
-          transform: translate(-10px, 0);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        overflow: hidden;
+      }
+      .chord-notes {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        width: 100% !important;
+  
+        svg {
+          margin: 0 auto;
+          text-align: center;
+          display: inline;
+  
+          .staff-extra {
+            display: none;
+          }
+      
+          .staff.l0.v0.m0,
+          .note {
+            transform: translate(-10px, 0);
+          }
         }
       }
     }
   }
 }
 
-.clear-input button {
-  width: 100%;
-  height: 40px;
-  border: 2px solid #333;
-  font-size: 15px;
-  border-radius: none;
-  background-color: transparent;
-  box-sizing: border-box;
+.control-panel-wrapper {
+  background-color: #222;
+  .control-panel  {
+    width: 100%;
+    height: 30px;
+    max-width: $main-max-width;
+    margin: 0 auto;
+    padding: 10px 0;
+  
+    button {
+      padding: 0 10px;
+      height: 30px;
+      border: 2px solid #fff;
+      font-size: 15px;
+      color: #fff;
+      border-radius: none;
+      background-color: transparent;
+      box-sizing: border-box;
+    }
+
+    button#help-input {
+      float: left;
+    }
+    button#delete-input {
+      float: right;
+      margin-left: 10px;
+    }
+    button#clear-input {
+      float: right;
+    }
+  }
 }
