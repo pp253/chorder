@@ -262,3 +262,15 @@ sub {
     }
   }
 }
+
+footer {
+  width: 100%;
+  max-width: $main-max-width;
+  margin: 0 auto;
+
+  text-align: center;
+  color: #bbb;
+  a {
+    color: #bbb;
+  }
+}

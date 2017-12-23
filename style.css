@@ -467,3 +467,12 @@ sub {
       margin-left: 10px; }
     .control-panel-wrapper .control-panel button#clear-input {
       float: right; }
+
+footer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  color: #bbb; }
+  footer a {
+    color: #bbb; }
