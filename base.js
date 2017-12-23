@@ -1,14 +1,3 @@
-/**
- * 純 = (可以省略)
- * 大 +
- * 小 -
- * 增 ++
- * 減 --
- * 倍增 +++
- * 倍減 ---
- * 例如小三度就是 `-3`，大三度是 `+3`。而純五度可以寫 `=5`，或直接寫成 `5`。
- */
-
 const basicChords = {
   '': ['1', '+3', '5'],
   'm': ['1', '-3', '5'],
@@ -18,7 +7,13 @@ const basicChords = {
 }
 
 const musicMode = {
-  'Iolian': [1, 3, 5, 6, 8, 10, 12]
+  'Ionian': [1, 3, 5, 6, 8, 10, 12],
+  'Dorian': [1, 3, 4, 6, 8, 10, 11],
+  'Phrygian': [1, 2, 4, 6, 8, 9, 11],
+  'Lydian': [1, 3, 5, 7, 8, 10, 12],
+  'Mixolydian': [1, 3, 5, 6, 8, 10, 11],
+  'Aeolian': [1, 3, 4, 6, 8, 9, 11],
+  'Locrian': [1, 2, 4, 6, 7, 9, 11]
 }
 
 const musicSeconde = {
@@ -44,6 +39,19 @@ const musicSignature = {
   '___': -3
 }
 
+/**
+ * How to notate a legal degree?
+ * 例如小三度就是 `-3`，大三度是 `+3`。而純五度可以寫 `=5`，或直接寫成 `5`。
+ * 純 = (可以省略)
+ * 大 +
+ * 小 -
+ * 增 ++
+ * 減 --
+ * 倍增 +++
+ * 倍減 ---
+ */
+const musicIntervalRegExp = /([=+-]*)(\d+)/
+
 const musicInterval = {
   1: 0,
   2: 2,
@@ -67,7 +75,7 @@ const musicIntervalQuality = {
 }
 
 /**
- * from 1~\infty to 1-12
+ * Transfer note (in half) that > 12 to 1 to 12.
  * @param {number} note A note Integer from 1 to \infty
  */
 function toLegalNote (note) {
@@ -77,15 +85,22 @@ function toLegalNote (note) {
   return (note - 1) % 12 + 1
 }
 
-function toLegalNumber (num) {
-  if (typeof num !== 'number') {
-    console.error('Number should be a number!')
+/**
+ * Transfer degree that >= 8 to 1 to 7 degree.
+ * @param {number} interval
+ */
+function toLegalInterval (interval) {
+  if (typeof interval !== 'number') {
+    console.error('Interval should be a number!')
   }
-  return (num - 1) % 7 + 1
+  return (interval - 1) % 7 + 1
 }
 
-const musicIntervalRegExp = /([=+-]*)(\d+)/
-
+/**
+ * Get the note based on the tone and degree you gave.
+ * @param {number} tone The tone of the music.
+ * @param {string} degree The degree of the target note.
+ */
 function toNoteByDegree (tone, degree) {
   if (typeof tone !== 'number' || typeof degree !== 'string') {
     console.error('Tone should be a number and Degree should be a string!')
@@ -95,15 +110,22 @@ function toNoteByDegree (tone, degree) {
   let half = 0
   let qualityToHalf = musicIntervalQuality[quality]
 
-  if (![1, 4, 5, 8].includes(toLegalNumber(num))) {
+  if (![1, 4, 5, 8].includes(toLegalInterval(num))) {
     if (qualityToHalf > 0) {
       qualityToHalf -= 1
     }
   }
-  half = musicInterval[toLegalNumber(num)] + 12 * parseInt((num - 1) / 8) + qualityToHalf
+  half = musicInterval[toLegalInterval(num)] + 12 * parseInt((num - 1) / 8) + qualityToHalf
   return toLegalNote(tone + half)
 }
 
+/**
+ * Compare two notes whether they are the same.
+ * Note that '#F' is equal to 'bG', and so on.
+ * @param {number} note Note1
+ * @param {number} tone Note2's tone
+ * @param {string} degree Note2's degree
+ */
 function equalNote (note, tone, degree) {
   if (typeof note !== 'number') {
     console.error('Note should be a number!')
@@ -114,6 +136,13 @@ function equalNote (note, tone, degree) {
   return toLegalNote(note) === toNoteByDegree(tone, degree)
 }
 
+/**
+ * Get the half distance between Note1 and Note2.
+ * Note that the distance will given in a range, for instance,
+ * -13 will be given in -1 (-13 % 12).
+ * @param {number} note1 Note1's pitch (in half)
+ * @param {number} note2 Note2's pitch (in half)
+ */
 function noteHalfDistance (note1, note2) {
   if (typeof note1 !== 'number' || typeof note2 !== 'number') {
     console.error('Note1 and Note2 should be numbers!')
@@ -128,6 +157,11 @@ function noteHalfDistance (note1, note2) {
   }
 }
 
+/**
+ * Return the right signature (#, b) in abc notation by the given distance.
+ * `1` will return `^`, `-2` will return `__` and `0` will return `=`.
+ * @param {number} distance Distance between the flat note and the target note. From -3 to 3.
+ */
 function toSignature (distance) {
   if (typeof distance !== 'number') {
     console.error('Distance should be a number!')
@@ -149,6 +183,14 @@ function toSignature (distance) {
 }
 
 const solfegeRegExp = /([=_^]*)([A-Ga-g])/
+
+/**
+ * Return the solfege of the given Note. The using of sharp or flat sign will depends
+ * on the Ionian mode.
+ * @param {*} tone Note's tone
+ * @param {*} degree Note's degree
+ * @returns {string} the abc notation of a note
+ */
 function toSolfege (tone, degree) {
   if (typeof tone !== 'number' || typeof degree !== 'string') {
     console.error('Tone should be a number and Degree should be a string!')
@@ -170,9 +212,9 @@ function toSolfege (tone, degree) {
   let [, , toneSolfege] = solfegeRegExp.exec(modeFirstNote[tone])
   toneSolfege.toUpperCase()
   let [, , num] = musicIntervalRegExp.exec(degree)
-  num = toLegalNumber(parseInt(num))
+  num = toLegalInterval(parseInt(num))
 
-  let targetSolfege = musicSecondeSort[toLegalNumber(musicSecondeSort.indexOf(toneSolfege) + num) - 1]
+  let targetSolfege = musicSecondeSort[toLegalInterval(musicSecondeSort.indexOf(toneSolfege) + num) - 1]
 
   let noteShouldBe = musicSeconde[targetSolfege]
   let noteActuallyBe = toNoteByDegree(tone, degree)
@@ -181,6 +223,10 @@ function toSolfege (tone, degree) {
   return targetSignature + targetSolfege
 }
 
+/**
+ * Return the solfege of a given note by mapping.
+ * @param {number} note Note
+ */
 function toSolfegeByNote (note) {
   if (typeof note !== 'number') {
     console.error('Note should be a number!')
@@ -221,19 +267,28 @@ function makeInitialWeightMatrix () {
   return newWeightMatrix
 }
 
-let weightMatrix = makeInitialWeightMatrix()
+let weightMatrix = makeInitialWeightMatrix() // or `= initialWeightMatrix`
 
+/**
+ * For ML, return an array with the right corresponding index by the given notes.
+ * @param {Array} notes An array of note.
+ */
 function toNoteArray (notes) {
   if (!(notes instanceof Array)) {
     console.error('Notes should be an array!')
   }
-  let newArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  let notesArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   for (let note of notes) {
-    newArray[note - 1] = 1
+    notesArray[toLegalNote(note) - 1] = 1
   }
-  return newArray
+  return notesArray
 }
 
+/**
+ * For ML, return an array with the right corresponding index by the given tone and chord.
+ * @param {number} tone
+ * @param {string} chord
+ */
 function toNoteArrayByChord (tone, chord) {
   if (typeof tone !== 'number' || (typeof chord !== 'string')) {
     console.error('Tone should be a number and Chord should be a string!')
@@ -245,6 +300,11 @@ function toNoteArrayByChord (tone, chord) {
   return toNoteArray(notes)
 }
 
+/**
+ * For ML, we need to know the index of a chord so as to make
+ * a output matrix with right sorting.
+ * @param {string} chord The name of a chord
+ */
 function getChordIndex (chord) {
   if (typeof chord !== 'string') {
     console.error('Chord should be a string!')
@@ -259,22 +319,26 @@ function getChordIndex (chord) {
   return chordIndex
 }
 
+/**
+ * For ML, to get a expected outcome array.
+ * @param {number} tone The tone
+ * @param {string} chord The name of a chord
+ */
 function toChordArray (tone, chord) {
   if (typeof tone !== 'number' || (typeof chord !== 'string')) {
     console.error('Tone should be a number and Chord should be a string!')
   }
-  let newArray = []
-  let chordIndex = 0
-  for (let i in basicChords) {
-    if (i === chord) {
-      break
-    }
-    chordIndex++
-  }
-  newArray[(chordIndex * 12) + tone - 1] = 1
-  return newArray
+  let chordArray = []
+  chordArray[(getChordIndex(chord) * 12) + tone - 1] = 1
+  return chordArray
 }
 
+/**
+ * The core of the ML.
+ * @param {[number]} notes
+ * @param {number} tone
+ * @param {string} chord
+ */
 function learningChords (notes, tone, chord) {
   if (!(notes instanceof Array)) {
     console.error('Notes should be an array!')
@@ -292,12 +356,16 @@ function learningChords (notes, tone, chord) {
     let nOut = 1 / (1 + Math.exp(-nIn)) // Sigmoid Function
     let y = expectedChordArray[count] ? 1 : 0
     for (let i = 0; i < 12; i++) {
-      weight[i] = weight[i] - learningRate * (nOut - y) * notes[i]
+      weight[i] = weight[i] - learningRate * (nOut - y) * notes[i] // Gradient descent
     }
     count++
   }
 }
 
+/**
+ * Using the weight matrix to get the possible chords.
+ * @param {[number]} notes The input notes
+ */
 function findChords (notes) {
   if (!(notes instanceof Array)) {
     console.error('Notes should be an array!')
@@ -314,6 +382,10 @@ function findChords (notes) {
   return predictChordArray
 }
 
+/**
+ * Sort the predict chord array by the score of each tone-chord.
+ * @param {[number]} predictChordArray
+ */
 function sortTheResult (predictChordArray) {
   if (!(predictChordArray instanceof Array)) {
     console.error('PredictChordArray should be and array!')
@@ -333,6 +405,8 @@ function sortTheResult (predictChordArray) {
   })
   return predictChordArrayWithText
 }
+
+// DOM Handling
 
 function drawNotes (id, name = 'input', chordString) {
   let engraverParams = {}
@@ -410,25 +484,6 @@ function main () {
   console.log('Learning Rate:', learningRate)
   console.log('Learning Times:', 100, 'round')
   console.log('Learning Duration:', endTime - startTime, 'ms')
-
-  /*
-  console.log('PREDICT!!')
-  for (let tone = 1; tone <= 12; tone++) {
-    for (let chord in basicChords) {
-      let predict = sortTheResult(findChords(toNoteArrayByChord(tone, chord)))
-      console.log(tone + chord, predict[0].tone + predict[0].chord, predict[1].tone + predict[1].chord, predict[2].tone + predict[2].chord)
-    }
-  }
-
-  console.log('SOLVEGE!!')
-  for (let tone = 1; tone <= 12; tone++) {
-    let str = ''
-    for (let degree = 1; degree <= 8; degree++) {
-      str += toSolfege(tone, String(degree)) + ' '
-    }
-    console.log(tone, str)
-  }
-  */
 }
 main()
 
