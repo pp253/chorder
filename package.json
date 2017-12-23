@@ -8,9 +8,10 @@
   "author": "pp253",
   "license": "Apache-2.0",
   "dependencies": {
+  },
+  "devDependencies": {
     "node-sass": "^4.7.2"
   },
-  "devDependencies": {},
   "standard": {
     "ignore": [
       "/dist/*"
